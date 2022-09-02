@@ -24,19 +24,3 @@
 
 성능
 1. 사용자는 전체 차량 대여 가능 목록을 실시간으로 확인할 수 있어야 한다.
-
-
-
-체크포인트
-1. Saga (Pub / Sub)
-2. CQRS
-3. Compensation / Correlation
-4. Request / Response
-7. Circuit Breaker
-5. Gateway / Ingress
-6. Deploy / Pipeline
-8. Autoscale (HPA)
-9. Zero-downtime deploy (Readiness probe)
-10. Persistence Volume/ConfigMap/Secret
-11. Polyglot
-12. Self-healing (liveness probe)
