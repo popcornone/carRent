@@ -2,7 +2,7 @@
 
     <v-card outlined>
         <v-card-title>
-            Confirm
+            ReturnCar
         </v-card-title>
 
         <v-card-text>
@@ -13,9 +13,9 @@
             <v-btn
                     color="deep-purple lighten-2"
                     text
-                    @click="confirm"
+                    @click="returnCar"
             >
-                Confirm
+                ReturnCar
             </v-btn>
             
             <v-btn
@@ -33,7 +33,7 @@
 <script>
    
     export default {
-        name: 'ConfirmCommand',
+        name: 'ReturnCarCommand',
         components:{},
         props: {},
         data: () => ({
@@ -45,8 +45,8 @@
         watch: {
         },
         methods: {
-            confirm() {
-                this.$emit('confirm', this.value);
+            returnCar() {
+                this.$emit('returnCar', this.value);
             },
             close() {
                 this.$emit('closeDialog');

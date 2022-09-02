@@ -7,10 +7,10 @@ import lombok.*;
 
 @Data
 @ToString
-public class Registered extends AbstractEvent {
+public class Returned extends AbstractEvent {
 
-    private Long carId;
-    private Boolean status;
+    private Long rentId;
+    private String rentStatus;
     // keep
 
 }

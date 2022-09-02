@@ -1,12 +1,7 @@
 package carrent.domain;
 
 import carrent.CarRentalApplication;
-import carrent.domain.Approved;
-import carrent.domain.Confirmed;
-import carrent.domain.Rented;
-import carrent.domain.Reservecancelled;
 import carrent.domain.Reserved;
-import carrent.domain.Returned;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
@@ -39,9 +34,6 @@ public class CarRentSystem {
 
     @PostPersist
     public void onPostPersist() {
-        Returned returned = new Returned(this);
-        returned.publishAfterCommit();
-
         //Following code causes dependency to external APIs
         // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
 
@@ -53,18 +45,6 @@ public class CarRentSystem {
 
         Reserved reserved = new Reserved(this);
         reserved.publishAfterCommit();
-
-        Reservecancelled reservecancelled = new Reservecancelled(this);
-        reservecancelled.publishAfterCommit();
-
-        Approved approved = new Approved(this);
-        approved.publishAfterCommit();
-
-        Confirmed confirmed = new Confirmed(this);
-        confirmed.publishAfterCommit();
-
-        Rented rented = new Rented(this);
-        rented.publishAfterCommit();
     }
 
     public static CarRentSystemRepository repository() {
@@ -74,43 +54,23 @@ public class CarRentSystem {
         return carRentSystemRepository;
     }
 
-    public static void carStatusChange(Registered registered) {
-        /** Example 1:  new item 
-        CarRentSystem carRentSystem = new CarRentSystem();
-        repository().save(carRentSystem);
-
-        */
-
-        /** Example 2:  finding and process
-        
-        repository().findById(registered.get???()).ifPresent(carRentSystem->{
-            
-            carRentSystem // do something
-            repository().save(carRentSystem);
-
-
-         });
-        */
-
+    public void reserveCancel() {
+        Reservecancelled reservecancelled = new Reservecancelled(this);
+        reservecancelled.publishAfterCommit();
     }
 
-    public static void carStatusChange(Registercancelled registercancelled) {
-        /** Example 1:  new item 
-        CarRentSystem carRentSystem = new CarRentSystem();
-        repository().save(carRentSystem);
+    public void returnCar() {
+        Returned returned = new Returned(this);
+        returned.publishAfterCommit();
+    }
 
-        */
+    public void pay() {
+        Approved approved = new Approved(this);
+        approved.publishAfterCommit();
+    }
 
-        /** Example 2:  finding and process
-        
-        repository().findById(registercancelled.get???()).ifPresent(carRentSystem->{
-            
-            carRentSystem // do something
-            repository().save(carRentSystem);
-
-
-         });
-        */
-
+    public void rent() {
+        Rented rented = new Rented(this);
+        rented.publishAfterCommit();
     }
 }

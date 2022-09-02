@@ -15,6 +15,12 @@ public class VehicleManagementSystemHateoasProcessor
     public EntityModel<VehicleManagementSystem> process(
         EntityModel<VehicleManagementSystem> model
     ) {
+        model.add(
+            Link
+                .of(model.getRequiredLink("self").getHref() + "/registercancel")
+                .withRel("registercancel")
+        );
+
         return model;
     }
 }

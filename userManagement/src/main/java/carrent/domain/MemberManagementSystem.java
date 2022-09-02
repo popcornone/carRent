@@ -48,6 +48,8 @@ public class MemberManagementSystem {
         MemberManagementSystem memberManagementSystem = new MemberManagementSystem();
         repository().save(memberManagementSystem);
 
+        PersonalInformationRegistered personalInformationRegistered = new PersonalInformationRegistered(memberManagementSystem);
+        personalInformationRegistered.publishAfterCommit();
         */
 
         /** Example 2:  finding and process
@@ -57,6 +59,8 @@ public class MemberManagementSystem {
             memberManagementSystem // do something
             repository().save(memberManagementSystem);
 
+            PersonalInformationRegistered personalInformationRegistered = new PersonalInformationRegistered(memberManagementSystem);
+            personalInformationRegistered.publishAfterCommit();
 
          });
         */

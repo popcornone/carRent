@@ -17,5 +17,32 @@ public class VehicleManagementSystemController {
 
     @Autowired
     VehicleManagementSystemRepository vehicleManagementSystemRepository;
+
+    @RequestMapping(
+        value = "vehicleManagementSystems/{id}/registercancel",
+        method = RequestMethod.PUT,
+        produces = "application/json;charset=UTF-8"
+    )
+    public VehicleManagementSystem registerCancel(
+        @PathVariable(value = "id") Long id,
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws Exception {
+        System.out.println(
+            "##### /vehicleManagementSystem/registerCancel  called #####"
+        );
+        Optional<VehicleManagementSystem> optionalVehicleManagementSystem = vehicleManagementSystemRepository.findById(
+            id
+        );
+
+        optionalVehicleManagementSystem.orElseThrow(() ->
+            new Exception("No Entity Found")
+        );
+        VehicleManagementSystem vehicleManagementSystem = optionalVehicleManagementSystem.get();
+        vehicleManagementSystem.registerCancel();
+
+        vehicleManagementSystemRepository.save(vehicleManagementSystem);
+        return vehicleManagementSystem;
+    }
     // keep
 }

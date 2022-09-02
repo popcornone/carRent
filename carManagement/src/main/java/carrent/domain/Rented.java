@@ -7,18 +7,10 @@ import lombok.*;
 
 @Data
 @ToString
-public class Returned extends AbstractEvent {
+public class Rented extends AbstractEvent {
 
     private Long rentId;
     private String rentStatus;
-
-    public Returned(CarRentSystem aggregate) {
-        super(aggregate);
-    }
-
-    public Returned() {
-        super();
-    }
     // keep
 
 }
